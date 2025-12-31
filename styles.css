@@ -257,7 +257,7 @@ html, body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.explanation h2 {
+.explanation h3 {
   margin: 0 0 8px 0;
   font-size: 1.1rem;
   color: var(--accent);
