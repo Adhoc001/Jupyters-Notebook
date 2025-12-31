@@ -243,7 +243,7 @@ html, body {
 
 
 /* ======================================================
-   PAGE LOADER (MAIN ONLY)
+   Explaination
    ====================================================== */
 
 
@@ -259,7 +259,7 @@ html, body {
 
 .explanation h2 {
   margin: 0 0 8px 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--accent);
 }
 
@@ -267,6 +267,7 @@ html, body {
   margin: 0;
   color: var(--text-primary);
   line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 
