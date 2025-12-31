@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>roriOps Documentation</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<header class="top-nav">
+  <a href="index.html" class="nav-left" aria-label="Go to homepage">
+    <span class="logo-emoji" aria-hidden="true">📚</span>
+    <span class="logo-text">Jupyters Notebook</span>
+  </a>
+
+  <!-- Right side -->
+  <div class="nav-right">
+    <input
+      class="nav-search"
+      type="search"
+      placeholder="Search docs…"
+      aria-label="Search documentation"
+    />
+  </div>
+</header>
+
+
+
+
+<div class="layout">
+
+  <!-- Sidebar -->
+<aside class="sidebar">
+  <nav>
+    <a class="parent">Overview
+      <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
+    <div class="submenu">
+      <a href="index.html" class="active">What is roriOps?</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="contributors.html">Contributors</a>
+    </div>
+
+    <a class="parent">Runbook
+      <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
+    <div class="submenu">
+      <a href="whitelisting.html">Whitelisting</a>
+      <a href="decommission.html">Cluster Decommission</a>
+      <a href="customkernel.html">PR Review and Merge</a>
+    </div>
+  </nav>
+</aside>
+
+
+
+<!-- Main -->
+<main class="content" id="mainContent">
+
+  <!-- Loader -->
+  <section class="page-loader" id="pageLoader">
+    <div class="spinner"></div>
+    <p>Loading content…</p>
+  </section>
+
+  <!-- Actual Page Content -->
+  <section class="page-body hidden" id="pageBody">
+    <section class="under-construction">
+      <div class="uc-card">
+        <div class="uc-icon">🚧</div>
+
+        <h1>Page Under Construction</h1>
+
+        <p>
+          This section is currently being worked on.<br>
+          Please check back soon for updates.
+        </p>
+      </div>
+    </section>
+  </section>
+
+</main>
+
+
+  <!-- TOC -->
+  <aside class="toc">
+    <h4>On this page</h4>
+    <a>Whitelisting</a>
+  </aside>
+
+</div>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("pageLoader");
+  const body = document.getElementById("pageBody");
+  const main = document.getElementById("mainContent");
+
+  // Lock UI
+  main.classList.add("loading");
+
+  setTimeout(() => {
+    // Start fade out animation
+    loader.classList.add("fade-out");
+
+    // Reveal content
+    body.classList.remove("hidden");
+    main.classList.remove("loading");
+
+    // Fully remove loader after animation
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500); // must match CSS transition time
+  }, 1000);
+});
+
+
+// Select all parent links
+document.querySelectorAll(".sidebar a.parent").forEach(parent => {
+  // Ensure submenu is open on page load
+  const submenu = parent.nextElementSibling;
+  if (submenu && submenu.classList.contains("submenu")) {
+    submenu.style.display = "flex"; // open by default
+    parent.classList.add("open");    // chevron down
+  }
+
+  // Toggle submenu on click
+  parent.addEventListener("click", () => {
+    if (submenu.style.display === "none") {
+      submenu.style.display = "flex";   // open
+      parent.classList.add("open");      // rotate chevron
+    } else {
+      submenu.style.display = "none";    // close
+      parent.classList.remove("open");   // reset chevron
+    }
+  });
+});
+
+// Highlight submenu child when clicked
+document.querySelectorAll(".sidebar .submenu a").forEach(child => {
+  child.addEventListener("click", () => {
+    // Remove active from all
+    document.querySelectorAll(".sidebar .submenu a").forEach(a => a.classList.remove("active"));
+    // Add active to clicked
+    child.classList.add("active");
+    // Navigation now works normally
+  });
+});
+
+
+// Mermaid initialization (unchanged)
+mermaid.initialize({
+  startOnLoad: true,
+  theme: "dark",
+  flowchart: {
+    htmlLabels: true,
+    curve: "basis",
+    nodeSpacing: 20,
+    rankSpacing: 50
+  },
+  themeVariables: {
+    background: "#0f172a",
+    primaryColor: "#020617",
+    primaryBorderColor: "#334155",
+    primaryTextColor: "#e5e7eb",
+    lineColor: "#64748b",
+    edgeLabelBackground: "#020617",
+    fontFamily: "Inter, system-ui, sans-serif"
+  }
+});
+</script>
+
+
+
+</body>
+</html>

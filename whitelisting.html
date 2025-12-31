@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>roriOps Documentation</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<header class="top-nav">
+  <a href="index.html" class="nav-left" aria-label="Go to homepage">
+    <span class="logo-emoji">📚</span>
+    <span class="logo-text">Jupyters Notebook</span>
+  </a>
+
+  <div class="nav-right">
+    <input class="nav-search" type="search" placeholder="Search docs…" />
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <nav>
+      <a class="parent">Overview
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+      <div class="submenu">
+        <a href="index.html">What is roriOps?</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="contributors.html">Contributors</a>
+      </div>
+
+      <a class="parent">Runbook
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+      <div class="submenu">
+        <a href="whitelisting.html" class="active">Whitelisting</a>
+        <a href="decommission.html">Cluster Decommission</a>
+        <a href="customkernel.html">PR Review and Merge</a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="content" id="mainContent">
+
+    <section id="pageBody">
+
+      <!-- Page Header -->
+      <section class="page-header">
+        <h1>Whitelisting</h1>
+        <p>
+          Steps to follow in terms of whitelisting a namespace to use ABS
+        </p>
+      </section>
+
+      <section class="explanation">
+        <h2>Why do we need to whitelist a namespace?</h2>
+        <p>A namespace is needed to be whitelisted to be able to utilize ABS resources.</p>
+      </section>
+
+      <!-- Diagram Section -->
+      <section class="diagram-section">
+
+        <div class="mermaid">
+  flowchart TD
+    A[<h2>Github Process</h2>] --> B
+
+    B[<strong>data-studio-operator</strong><br>exist in your local?]
+
+    B -->|YES| C[
+      <div style="font-size:13px; line-height:0.6">
+      
+      <b style="font-size:15px;">UPDATE YOUR REPO</b><br><br>
+      
+      <span style="display:block; text-align:left;">
+      1a. Check remote upstream, if none, perform 3b
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git remote -v
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      2a. Update Local Repo
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git upstream main
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      3a. Update Fork Repo
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git push origin main
+        </strong>
+      </div>
+      </span>
+      </div>
+      ]
+
+    B -->|NO| D[
+      <div style="font-size:13px; line-height:0.6">
+
+      <span style="display:block; text-align:left;">
+      1b. Fork this <a href="#" style="text-decoration: none; color: white;"><strong>GithubRepo</strong></a>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      2b. Clone your Fork to local using VScode terminal
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git clone <i style="text-decoration: underline;">ssh-link-forked-repo-here</i>
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      3b. Add upstream remote
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git remote add upstream <i style="text-decoration: underline;">ssh-link-original-repo-here</i>
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      4b. Confirm remote upstream
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git remote -v
+        </strong>
+      </div>
+      </span>
+
+      </div>
+    ]
+
+    C --> E[
+      <div style="font-size:13px; line-height:0.6">
+
+      <span style="display:block; text-align:left;">
+      Go to the Local Repo Directory
+      <div style="text-align: center;">
+        <strong>
+          $ cd <i style="text-decoration: underline;">data-studio-operator/</i>
+        </strong>
+      </div>
+      </span>
+      </div>
+    ]
+
+    D --> E
+
+    E --> F[<h2>Proceed Whitelisting</h2>]
+    F --> G[
+      <div style="font-size:13px; line-height:0.6">
+
+      <span style="display:block; text-align:left;">
+      Check this GithubRepo if their namespace is listed to use ABS
+      <div style="text-align: center;">
+        <strong>
+          / Deployment / Kube / Prod / Select approriate Cluster
+        </strong>
+      </div>
+      </span>
+      </div>
+    ]
+
+    G -->|ALREADY LISTED| H[<a style="color: green; font-weight: bolder;">NAMESPACE <br>IS CONSIDERED <br>TO BE WHITELISTED</a>]
+    G -->|NOT YET LISTED| I[
+      <div style="font-size:13px; line-height:0.6">
+      
+      <b style="font-size:15px;">ADD THEIR NAMESPACE</b><br><br>
+      
+      <span style="display:block; text-align:left;">
+      Refer to this sample:
+      <div style="padding-left: 1.3rem;"><br>
+          ''namespace-xxx'': ''true'',<br>
+          ''namespace-xxx'': ''true'',<br>
+          ''namespace-xxx'': ''true'',<br>
+          ''namespace-xxx'': ''true'',<br>
+          <a style="color: yellow;">''new-namespace'': ''true''</a><br><br>
+      </div>
+      <strong><i style="color: brown;">Note: NO COMMA IN THE LAST PART</i></strong>
+      </span>
+
+      </div>
+    ]
+
+    I --> J[
+      <div style="font-size:13px; line-height:0.6">
+      
+        <b style="font-size:15px;">PUSH YOUR CHANGES</b>
+
+        <div style="padding-left: 1.3rem; text-align: left;">
+          <strong>
+            $ git add .<br>
+            $ git status<br>
+            $ git commit -m ''Enabling ABS for <i style="text-decoration: underline;">cluster-name</i>, <i style="text-decoration: underline;">namespace</i>''<br>
+            $ git push origin main
+          </strong>
+        </div>
+      
+      </div>
+    ]
+
+    J --> K[
+      <div style="font-size:13px; line-height:0.6">
+      
+        <b style="font-size:15px;">CREATE PULL REQUEST</b>
+            
+        <span style="display:block; text-align:left;">
+        1. Go to your Forked Repo. <br>
+        2. Clicked the <i style="text-decoration: underline;">''1 commit ahead''.</i> <br>
+        3. Create Pull Request. <br>
+        4. Once the PR passess all security checks, you can now ask our devs for <strong>merging</strong>. <br>
+        5. Once PR is now merged, check <a href="#" style="color: white;"><strong>prod-publish</strong></a> pipeline. <br>
+        6. Manually stop this run then manually rerun before updating user that their namespace is now whitelisted to use ABS.
+        </span>
+      
+      </div>
+    ]
+
+    K --> L[<h2>FOR POSTING</h2>]
+    L --> M[
+      <div style="font-size:13px; line-height:0.6">
+      
+        <b style="font-size:15px;">SLACK TEMPLATE</b>
+            
+        <span style="display:block; text-align:left;">
+        Hi Team, posting this whitelisting request for tracking and visibility. I’ll keep this thread updated with any progress. Thanks! <br>
+        • Cluster : <i style="text-decoration: underline;">cluster-name</i> / Namespace : <i style="text-decoration: underline;">namespace</i><br>
+        :pr: : <i style="text-decoration: underline;">PR Link Here</i><br>
+        :slack: : <i style="text-decoration: underline;">Slack Tread Link Here</i><br>
+        cc: <i style="text-decoration: underline;">@Approver</i>
+        </span>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+          <a href="#slackwhitelistingtemplate" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+      
+      </div>
+    ]
+
+    %% Make A invisible
+    style A fill:none,stroke:none
+    %% Make F invisible
+    style F fill:none,stroke:none
+    %% Make L invisible
+    style L fill:none,stroke:none
+        </div>
+
+      </section>
+
+    </section>
+  </main>
+
+  <!-- References -->
+  <aside class="reference">
+    <h4>References</h4>
+    <a>Docs 1</a>
+    <a>Docs 2</a>
+    <a>Docs 3</a>
+    <a>Docs 4</a>
+    <a>Docs 5</a>
+  </aside>
+
+</div>
+
+<script>
+// Sidebar submenu toggle
+document.querySelectorAll(".sidebar a.parent").forEach(parent => {
+  const submenu = parent.nextElementSibling;
+  submenu.style.display = "flex";
+  parent.classList.add("open");
+
+  parent.addEventListener("click", () => {
+    const open = submenu.style.display !== "none";
+    submenu.style.display = open ? "none" : "flex";
+    parent.classList.toggle("open", !open);
+  });
+});
+
+// Highlight submenu child
+document.querySelectorAll(".sidebar .submenu a").forEach(child => {
+  child.addEventListener("click", () => {
+    document.querySelectorAll(".sidebar .submenu a").forEach(a => a.classList.remove("active"));
+    child.classList.add("active");
+  });
+});
+
+// Mermaid initialization (UNCHANGED)
+mermaid.initialize({
+  startOnLoad: true,
+  theme: "dark",
+  flowchart: {
+    htmlLabels: true,
+    curve: "basis",
+    nodeSpacing: 20,
+    rankSpacing: 50
+  },
+  themeVariables: {
+    background: "#0f172a",
+    primaryColor: "#020617",
+    primaryBorderColor: "#334155",
+    primaryTextColor: "#e5e7eb",
+    lineColor: "#64748b",
+    edgeLabelBackground: "#020617",
+    fontFamily: "Inter, system-ui, sans-serif"
+  }
+});
+
+// Ensure flowchart SVG adapts on window resize
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".mermaid svg").forEach(svg => {
+    svg.setAttribute("width", "100%");
+  });
+});
+
+document.addEventListener("keydown", function(event) {
+  if(event.key === "Escape") {
+    // Close all modals
+    document.querySelectorAll(".modal-wrapper:target").forEach(modal => {
+      window.location.hash = ""; // remove target
+    });
+  }
+});
+
+</script>
+
+<div id="slackwhitelistingtemplate" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="/images/slacks-whitelisting-template.png" alt="Reference Image">
+  </div>
+</div>
+
+
+</body>
+</html>

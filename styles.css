@@ -1,0 +1,410 @@
+/* ======================================================
+   Global Variables (Merged, Non-conflicting)
+   ====================================================== */
+
+:root {
+  --bg-page: #0b1220;
+  --glass-bg: rgba(15, 23, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #e5e7eb;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+
+  --border-soft: rgba(255,255,255,0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ======================================================
+   Base Page
+   ====================================================== */
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1e293b 0%, #0b1220 45%, #020617 100%);
+  color: var(--text-primary);
+}
+
+/* ======================================================
+   Top Navigation / Logo
+   ====================================================== */
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nav-left:hover {
+  transform: scale(1.05);
+  color: var(--accent);
+}
+
+.logo-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-text {
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.top-nav {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-search {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+/* ======================================================
+   Layout Grid
+   ====================================================== */
+
+.layout {
+  display: grid;
+  grid-template-columns: 230px 1fr 240px;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+/* ======================================================
+   Sidebar
+   ====================================================== */
+
+.sidebar {
+  width: 220px;
+  background-color: var(--bg-page);
+  padding: 1rem;
+  color: var(--text-primary);
+}
+
+.sidebar a.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: default;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.sidebar a.parent:hover {
+  background-color: #334155;
+}
+
+.sidebar .submenu {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .submenu a {
+  padding: 0.4rem 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.sidebar .submenu a.active {
+  background-color: #38bdf8;
+  color: #020617;
+}
+
+.sidebar .submenu a:hover {
+  background-color: #475569;
+}
+
+.sidebar a.parent svg.chevron {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-primary);
+  stroke-width: 2;
+  transition: transform 0.3s;
+}
+
+.sidebar a.parent.open svg.chevron {
+  transform: rotate(180deg);
+}
+
+/* ======================================================
+   Main Content (IMPORTANT FOR LOADER)
+   ====================================================== */
+
+.content {
+  position: relative;               /* REQUIRED */
+  height: 100%;
+  overflow-y: auto;
+  padding: 32px;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge */
+
+}
+
+.content::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari */
+}
+
+/* Hide main content fully */
+.hidden {
+  display: none;
+}
+
+/* ======================================================
+   Diagram Section & Mermaid (Responsive)
+   ====================================================== */
+
+.diagram-section {
+  width: 100%;               /* take full width of main content */
+  max-width: 1200px;         /* optional max width for readability */
+  margin: 0 auto;            /* center horizontally */
+  padding: 16px 0;           /* vertical spacing */
+  overflow-x: auto;          /* horizontal scroll if needed */
+}
+
+.mermaid {
+  width: 100% !important;    /* allow chart to expand to container */
+  min-width: 300px;          /* prevent chart from getting too small */
+  overflow-x: auto;          /* scroll if chart is larger than container */
+}
+
+.mermaid svg {
+  width: 100%;               /* SVG scales with container */
+  height: auto;              /* maintain aspect ratio */
+  max-width: 2000px;         /* optional: prevent extreme stretching on huge screens */
+}
+
+
+/* ======================================================
+   Under Construction
+   ====================================================== */
+
+.under-construction {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uc-card {
+  text-align: center;
+  padding: 48px 56px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.uc-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.uc-card h1 {
+  margin: 0 0 12px;
+  font-size: 1.8rem;
+}
+
+.uc-card p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+
+/* ======================================================
+   PAGE LOADER (MAIN ONLY)
+   ====================================================== */
+
+
+.explanation {
+  background: rgba(15, 23, 42, 0.75); /* glass effect */
+  border-left: 5px solid var(--accent); /* the "pipe" */
+  backdrop-filter: blur(14px);
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.explanation h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.explanation p {
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+
+/* ======================================================
+   PAGE LOADER (MAIN ONLY)
+   ====================================================== */
+
+.page-loader {
+  position: absolute;     /* scoped to main */
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.spinner {
+  width: 42px;
+  height: 42px;
+  border: 4px solid rgba(255,255,255,0.15);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ======================================================
+   References
+   ====================================================== */
+
+.reference {
+  padding: 32px 24px;
+  border-left: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 12px; /* space between each reference link */
+}
+
+.reference a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.reference a:hover {
+  color: var(--accent);
+}
+
+
+/* ======================================================
+   Modal
+   ====================================================== */
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-wrapper:target {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  z-index: 2;
+  border-radius: 12px;
+  width: 50vw;        /* 50% of viewport width on desktop */
+  max-width: 90%;     /* never exceed 90% of viewport */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 4px solid rgba(255, 255, 255, 0.08); /* theme border */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);        /* optional shadow to match theme */
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 32px;
+  color: white;
+  text-decoration: none;
+  z-index: 3;
+}
+
+/* Responsive: mobile devices */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90vw;      /* 90% width on smaller screens */
+  }
+}
+
+
+
+
+/* ======================================================
+   Responsive
+   ====================================================== */
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 240px 1fr;
+  }
+  .toc {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar,
+  .nav-search {
+    display: none;
+  }
+}
