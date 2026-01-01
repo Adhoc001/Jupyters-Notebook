@@ -21,140 +21,417 @@
 
 <header class="top-nav">
   <a href="index.html" class="nav-left" aria-label="Go to homepage">
-    <span class="logo-emoji" aria-hidden="true">📚</span>
+    <span class="logo-emoji">📚</span>
     <span class="logo-text">Jupyters Notebook</span>
   </a>
 
-  <!-- Right side -->
   <div class="nav-right">
-    <input
-      class="nav-search"
-      type="search"
-      placeholder="Search docs…"
-      aria-label="Search documentation"
-    />
+    <input class="nav-search" type="search" placeholder="Search docs…" />
   </div>
 </header>
-
-
-
 
 <div class="layout">
 
   <!-- Sidebar -->
-<aside class="sidebar">
-  <nav>
-    <a class="parent">Overview
-      <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </a>
-    <div class="submenu">
-      <a href="index.html">What is roriOps?</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="contributors.html">Contributors</a>
-    </div>
-
-    <a class="parent">Runbook
-      <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </a>
-    <div class="submenu">
-      <a href="whitelisting.html">Whitelisting</a>
-      <a href="decommission.html" class="active">Cluster Decommission</a>
-      <a href="customkernel.html">PR Review and Merge</a>
-    </div>
-  </nav>
-</aside>
-
-
-
-<!-- Main -->
-<main class="content" id="mainContent">
-
-  <!-- Loader -->
-  <section class="page-loader" id="pageLoader">
-    <div class="spinner"></div>
-    <p>Loading content…</p>
-  </section>
-
-  <!-- Actual Page Content -->
-  <section class="page-body hidden" id="pageBody">
-    <section class="under-construction">
-      <div class="uc-card">
-        <div class="uc-icon">🚧</div>
-
-        <h1>Page Under Construction</h1>
-
-        <p>
-          This section is currently being worked on.<br>
-          Please check back soon for updates.
-        </p>
+  <aside class="sidebar">
+    <nav>
+      <a class="parent">Overview
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+      <div class="submenu">
+        <a href="index.html">What is roriOps?</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="contributors.html">Contributors</a>
       </div>
+
+      <a class="parent">Runbook
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+      <div class="submenu">
+        <a href="whitelisting.html">Whitelisting</a>
+        <a href="decommission.html" class="active">Decommissioning</a>
+        <a href="customkernel.html">PR Review and Merge</a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="content" id="mainContent">
+
+    <section id="pageBody">
+
+      <!-- Page Header -->
+      <section class="page-header">
+        <h1>Cluster Decommisioning for Notebook</h1>
+        <p>
+          Steps to follow in terms of decommisioning a cluster
+        </p>
+      </section>
+
+      <section class="explanation">
+        <h3>Why do we need to decommision a cluster?</h3>
+        <p>Secret.</p>
+      </section>
+
+      <!-- Diagram Section -->
+      <section class="diagram-section">
+
+        <div class="mermaid">
+  flowchart TD
+    A[<h2>Radar Process</h2>] --> B
+
+    B[
+      <div style="font-size:13px; line-height:0.6">
+      
+      <b style="font-size:15px;">EDIT RADAR</b><br><br>
+      
+      <span style="display:block; text-align:left;">
+        <strong>Assignee:</strong> Your Name <br>
+        <strong>State:</strong> Investigate / Prepare <br>
+        <strong>Resolution:</strong> Unresolved <br>
+        <strong>Priority:</strong> 3 <br>
+        <strong>Set Proper Milestone</strong><br>
+        <strong>Acknowledge:</strong><i> ''Hi Team, Acknowledged on this decommision request.''</i>
+      </span>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+            <a href="#radartemplate" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+      
+      </div>
+    ]
+
+    B --> C[<h2>Github Process</h2>]
+
+    C --> D[<strong>acs-notebooks-controlplane-cloudtech</strong><br>exist in your local?]
+    D --> |NO| E[
+    <div style="font-size:13px; line-height:0.6">
+
+      <span style="display:block; text-align:left;">
+      1b. Fork this <a href="#" style="text-decoration: none; color: white;"><strong>GithubRepo</strong></a>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      2b. Clone your Fork to local using VScode terminal
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git clone <i style="text-decoration: underline;">ssh-link-forked-repo-here</i>
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      3b. Go to the Local Repo Directory
+      <div style="padding-left: 1.3rem;">
+          <strong>
+            $ cd <i style="text-decoration: underline;">acs-notebook-controlplane-cloudtech/</i>
+          </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      4b. Add upstream remote
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git remote add upstream <i style="text-decoration: underline;">ssh-link-original-repo-here</i>
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      5b. Confirm remote upstream
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git remote -v
+        </strong>
+      </div>
+      </span>
+
+    </div>
+    ]
+
+    D --> |YES| F[
+    <div style="font-size:13px; line-height:0.6">
+      
+      <b style="font-size:15px;">UPDATE YOUR REPO</b><br><br>
+
+      <span style="display:block; text-align:left;">
+      1a. Go to the Local Repo Directory
+      <div style="padding-left: 1.3rem;">
+          <strong>
+            $ cd <i style="text-decoration: underline;">acs-notebook-controlplane-cloudtech/</i>
+          </strong>
+      </div>
+      </span>
+      
+      <span style="display:block; text-align:left;">
+      2a. Check remote upstream, if none, perform 4b
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git remote -v
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      3a. Update Local Repo
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git upstream main
+        </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      4a. Update Fork Repo
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          $ git push origin main
+        </strong>
+      </div>
+      </span>
+    </div>
+    ]
+
+    F --> G[<h2>Manual Decommission</h2>]
+
+    E --> G
+
+    G --> H[<h4>Model Verification</h4>]
+
+    H --> |MODEL 1| I[
+        <div style="display:block; text-align:center;">
+            <a href="#model1" style="font-size:24px;">📖</a>
+        </div>
+    ]
+    
+    H --> |MODEL 2| J[
+        <div style="display:block; text-align:center;">
+            <a href="#model2" style="font-size:24px;">📖</a>
+        </div>
+    ]
+
+    I --> K[NO DATA FOR NOW]
+
+    J --> L[
+    <div style="font-size:13px; line-height:0.6">
+
+      <span style="display:block; text-align:left;">
+      1. Go to <strong>manualDecom.md</strong>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      2. Copy previous <i><strong>Decom</strong></i> from line <strong>9</strong> to <strong>23</strong>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      3. Edit this details:
+      <div style="padding-left: 1.3rem;">
+        <strong>
+          ClusterID: <br>
+          Cluster Name: <br>
+          Cluster Display Name: <br>
+          Identifier: <br>
+          Pipeline Name: <br>
+          Pipeline Link: <br>
+          Radar Details:
+        </strong>
+      </div>
+      </span>
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+            <a href="#decom-details" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+
+    </div>
+    ]
+
+    L --> M{
+      <div style="font-size:13px; line-height:0.6">
+        <span style="display:block; text-align:center;">
+            Details <br>
+            Completed
+        </span>
+      </div>
+    }
+
+    M --> |YES| N[
+        <div style="font-size:13px; line-height:0.6">
+            <span style="display:block; text-align:center;">
+                Double Check and Save the file <br>
+                <strong>manualDecom.md</strong>
+            </span>
+        </div>
+    ]
+    O --> L
+    M --> |NO| O[
+    <div style="font-size:13px; line-height:0.6">
+       <span style="display:block; text-align:left;">
+            Get the <i><strong>Cluster Details</strong></i> and <i><strong>Identifier</strong></i> using ClusterID from Radar.
+            <div style="text-align: center;">
+              <strong>
+                Dataplatform UI → Resources → Clusters → Search
+              </strong>
+            </div>
+        </span> 
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+            <a href="#cluster-details" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+    </div>
+    <div style="font-size:13px; line-height:0.6">
+       <span style="display:block; text-align:left;">
+            Get <i><strong>EKS Cluster ID</strong></i> using ClusterID from Radar in CRO.
+            <div style="text-align: center;">
+              <a href="#" style="color: white;">
+                <strong>Cloud Runtime Operator</strong>
+              </a>
+            </div>
+        </span> 
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+            <a href="#eks-clusterid" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+    </div>
+    <div style="font-size:13px; line-height:0.6">
+       <span style="display:block; text-align:left;">
+            Get <i><strong>Pipeline Details</strong></i> using EKS Cluster ID.
+            <div style="text-align: center;">
+              <a href="#" style="color: white;">
+                <strong>notebooks-onboard-pipelines</strong>
+              </a>
+            </div>
+        </span> 
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+            <a href="#eks-clusterid" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+    </div>
+    <div style="font-size:13px; line-height:0.6">
+       <span style="display:block; text-align:left;">
+            Get <i><strong>Radar Details</strong></i> by copying the link.
+            <div style="text-align: center;">
+              <strong>Go to Radar → Edit → Copy Link</strong>
+            </div>
+        </span> 
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+            <a href="#radar-details" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+    </div>
+    ]
+    N --> P[<h2>Github Process</h2>]
+    P --> Q[
+    <div style="font-size:13px; line-height:0.6">
+      
+        <b style="font-size:15px;">PUSH YOUR CHANGES</b>
+
+        <div style="padding-left: 0.6rem; text-align: left;">
+          <strong>
+            $ git add .<br>
+            $ git status<br>
+            $ git commit -m ''remove cluster <i style="text-decoration: underline;">ClusterID</i> in datapipelines''<br>
+            $ git push origin main
+          </strong>
+        </div>
+      
+      </div>
+    ]
+
+    Q --> R[
+    <div style="font-size:13px; line-height:0.6">
+      
+        <b style="font-size:15px;">CREATE PULL REQUEST</b>
+            
+        <span style="display:block; text-align:left;">
+        1. Go to your Forked Repo. <br>
+        2. Clicked the <i style="text-decoration: underline;">''1 commit ahead''.</i> <br>
+        3. Review changes and submit a Pull Request. <br>
+        4. Make sure PR has passed all checks before posting in internal. <br>
+        </span>
+      
+      </div>
+    ]
+
+    R --> S[<h2>FOR POSTING</h2>]
+
+    S --> T[
+    <div style="font-size:13px; line-height:0.6">
+      
+        <b style="font-size:15px;">SLACK TEMPLATE</b>
+            
+        <span style="display:block; text-align:left;">
+        :pr: Hi Team, created this PR to decommision cluster <i><strong style="text-decoration: underline;">ClusterID</strong></i> for review please. Thanks you! <br>
+        • Radar request: <i style="text-decoration: underline;">radar-link-here</i><br>
+        • PR Link: <i style="text-decoration: underline;">PR-link-here</i><br>
+        cc: <i style="text-decoration: underline;">@On-call Dev</i>
+        </span>
+        <div style="display:flex; justify-content:flex-end; margin-top:6px; padding-right:1.3rem;">
+          <a href="#slackdecomtemplate" style="font-size:24px; color:#38bdf8;">📖</a>
+        </div>
+      
+      </div>
+    ]
+
+
+
+      
+
+    %% Make A invisible
+    style A fill:none,stroke:none
+    %% Make C invisible
+    style C fill:none,stroke:none
+    %% Make G invisible
+    style G fill:none,stroke:none
+    %% Make I invisible
+    style I fill:none,stroke:none
+    %% Make J invisible
+    style J fill:none,stroke:none
+    %% Make P invisible
+    style P fill:none,stroke:none
+    %% Make S invisible
+    style S fill:none,stroke:none
+        </div>
+
+      </section>
+
     </section>
-  </section>
+  </main>
 
-</main>
-
-
-  <!-- TOC -->
-  <aside class="toc">
-    <h4>On this page</h4>
-    <a>Whitelisting</a>
+  <!-- References -->
+  <aside class="reference">
+    <h4>References</h4>
+    <a>Docs 1</a>
+    <a>Docs 2</a>
+    <a>Docs 3</a>
+    <a>Docs 4</a>
+    <a>Docs 5</a>
   </aside>
 
 </div>
 
 <script>
-
-  document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("pageLoader");
-  const body = document.getElementById("pageBody");
-
-  // Ensure initial state
-  body.classList.add("hidden");
-
-  setTimeout(() => {
-    loader.style.display = "none";   // instant disappear
-    body.classList.remove("hidden"); // instant show
-  }, 1000);
-});
-
-// Select all parent links
+// Sidebar submenu toggle
 document.querySelectorAll(".sidebar a.parent").forEach(parent => {
-  // Ensure submenu is open on page load
   const submenu = parent.nextElementSibling;
-  if (submenu && submenu.classList.contains("submenu")) {
-    submenu.style.display = "flex"; // open by default
-    parent.classList.add("open");    // chevron down
-  }
+  submenu.style.display = "flex";
+  parent.classList.add("open");
 
-  // Toggle submenu on click
   parent.addEventListener("click", () => {
-    if (submenu.style.display === "none") {
-      submenu.style.display = "flex";   // open
-      parent.classList.add("open");      // rotate chevron
-    } else {
-      submenu.style.display = "none";    // close
-      parent.classList.remove("open");   // reset chevron
-    }
+    const open = submenu.style.display !== "none";
+    submenu.style.display = open ? "none" : "flex";
+    parent.classList.toggle("open", !open);
   });
 });
 
-// Highlight submenu child when clicked
+// Highlight submenu child
 document.querySelectorAll(".sidebar .submenu a").forEach(child => {
   child.addEventListener("click", () => {
-    // Remove active from all
     document.querySelectorAll(".sidebar .submenu a").forEach(a => a.classList.remove("active"));
-    // Add active to clicked
     child.classList.add("active");
-    // Navigation now works normally
   });
 });
 
-
-// Mermaid initialization (unchanged)
+// Mermaid initialization (UNCHANGED)
 mermaid.initialize({
   startOnLoad: true,
   theme: "dark",
@@ -174,9 +451,96 @@ mermaid.initialize({
     fontFamily: "Inter, system-ui, sans-serif"
   }
 });
+
+// Ensure flowchart SVG adapts on window resize
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".mermaid svg").forEach(svg => {
+    svg.setAttribute("width", "100%");
+  });
+});
+
+document.addEventListener("keydown", function(event) {
+  if(event.key === "Escape") {
+    // Close all modals
+    document.querySelectorAll(".modal-wrapper:target").forEach(modal => {
+      window.location.hash = ""; // remove target
+    });
+  }
+});
+
 </script>
 
+<div id="radartemplate" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
 
+<div id="model1" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="model2" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="decom-details" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="cluster-details" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="eks-clusterid" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="pipeline-details" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="radar-details" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
+
+<div id="slackdecomtemplate" class="modal-wrapper">
+  <a href="#" class="modal-backdrop"></a>
+  <div class="modal-content">
+    <a href="#" class="modal-close"></a>
+    <img src="images/radar-decom-template.png" alt="Reference Image">
+  </div>
+</div>
 
 </body>
 </html>

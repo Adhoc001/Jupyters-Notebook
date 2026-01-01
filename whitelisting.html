@@ -53,7 +53,7 @@
       </a>
       <div class="submenu">
         <a href="whitelisting.html" class="active">Whitelisting</a>
-        <a href="decommission.html">Cluster Decommission</a>
+        <a href="decommission.html">Decommissioning</a>
         <a href="customkernel.html">PR Review and Merge</a>
       </div>
     </nav>
@@ -90,9 +90,18 @@
       <div style="font-size:13px; line-height:0.6">
       
       <b style="font-size:15px;">UPDATE YOUR REPO</b><br><br>
+
+      <span style="display:block; text-align:left;">
+      1a. Go to the Local Repo Directory
+      <div style="padding-left: 1.3rem;">
+          <strong>
+            $ cd <i style="text-decoration: underline;">data-studio-operator/</i>
+          </strong>
+      </div>
+      </span>
       
       <span style="display:block; text-align:left;">
-      1a. Check remote upstream, if none, perform 3b
+      2a. Check remote upstream, if none, perform 4b
       <div style="padding-left: 1.3rem;">
         <strong>
           $ git remote -v
@@ -101,7 +110,7 @@
       </span>
 
       <span style="display:block; text-align:left;">
-      2a. Update Local Repo
+      3a. Update Local Repo
       <div style="padding-left: 1.3rem;">
         <strong>
           $ git upstream main
@@ -110,7 +119,7 @@
       </span>
 
       <span style="display:block; text-align:left;">
-      3a. Update Fork Repo
+      4a. Update Fork Repo
       <div style="padding-left: 1.3rem;">
         <strong>
           $ git push origin main
@@ -137,7 +146,16 @@
       </span>
 
       <span style="display:block; text-align:left;">
-      3b. Add upstream remote
+      3b. Go to the Local Repo Directory
+      <div style="padding-left: 1.3rem;">
+          <strong>
+            $ cd <i style="text-decoration: underline;">data-studio-operator/</i>
+          </strong>
+      </div>
+      </span>
+
+      <span style="display:block; text-align:left;">
+      4b. Add upstream remote
       <div style="padding-left: 1.3rem;">
         <strong>
           $ git remote add upstream <i style="text-decoration: underline;">ssh-link-original-repo-here</i>
@@ -146,7 +164,7 @@
       </span>
 
       <span style="display:block; text-align:left;">
-      4b. Confirm remote upstream
+      5b. Confirm remote upstream
       <div style="padding-left: 1.3rem;">
         <strong>
           $ git remote -v
@@ -154,27 +172,13 @@
       </div>
       </span>
 
-      </div>
+    </div>
     ]
 
-    C --> E[
-      <div style="font-size:13px; line-height:0.6">
-
-      <span style="display:block; text-align:left;">
-      Go to the Local Repo Directory
-      <div style="text-align: center;">
-        <strong>
-          $ cd <i style="text-decoration: underline;">data-studio-operator/</i>
-        </strong>
-      </div>
-      </span>
-      </div>
-    ]
+    C --> E[<h2>Proceed Whitelisting</h2>]
 
     D --> E
-
-    E --> F[<h2>Proceed Whitelisting</h2>]
-    F --> G[
+    E --> F[
       <div style="font-size:13px; line-height:0.6">
 
       <span style="display:block; text-align:left;">
@@ -188,8 +192,8 @@
       </div>
     ]
 
-    G -->|ALREADY LISTED| H[<a style="color: green; font-weight: bolder;">NAMESPACE <br>IS CONSIDERED <br>TO BE WHITELISTED</a>]
-    G -->|NOT YET LISTED| I[
+    F -->|ALREADY LISTED| G[<a style="color: green; font-weight: bolder;">NAMESPACE <br>IS CONSIDERED <br>TO BE WHITELISTED</a>]
+    F -->|NOT YET LISTED| H[
       <div style="font-size:13px; line-height:0.6">
       
       <b style="font-size:15px;">ADD THEIR NAMESPACE</b><br><br>
@@ -209,7 +213,7 @@
       </div>
     ]
 
-    I --> J[
+    H --> I[
       <div style="font-size:13px; line-height:0.6">
       
         <b style="font-size:15px;">PUSH YOUR CHANGES</b>
@@ -226,7 +230,7 @@
       </div>
     ]
 
-    J --> K[
+    I --> J[
       <div style="font-size:13px; line-height:0.6">
       
         <b style="font-size:15px;">CREATE PULL REQUEST</b>
@@ -243,8 +247,8 @@
       </div>
     ]
 
-    K --> L[<h2>FOR POSTING</h2>]
-    L --> M[
+    J --> K[<h2>FOR POSTING</h2>]
+    K --> L[
       <div style="font-size:13px; line-height:0.6">
       
         <b style="font-size:15px;">SLACK TEMPLATE</b>
@@ -266,10 +270,10 @@
 
     %% Make A invisible
     style A fill:none,stroke:none
-    %% Make F invisible
-    style F fill:none,stroke:none
-    %% Make L invisible
-    style L fill:none,stroke:none
+    %% Make E invisible
+    style E fill:none,stroke:none
+    %% Make K invisible
+    style K fill:none,stroke:none
         </div>
 
       </section>
