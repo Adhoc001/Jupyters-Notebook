@@ -21,159 +21,315 @@
 
 <header class="top-nav">
   <a href="index.html" class="nav-left" aria-label="Go to homepage">
-    <span class="logo-emoji" aria-hidden="true">📚</span>
+    <span class="logo-emoji">📚</span>
     <span class="logo-text">Jupyters Notebook</span>
   </a>
 
-  <!-- Right side -->
   <div class="nav-right">
-    <input
-      class="nav-search"
-      type="search"
-      placeholder="Relax di pa ni mo gana..."
-      aria-label="Search documentation"
-    />
+    <input class="nav-search" type="search" placeholder="Relax di pa ni mo gana..." />
   </div>
 </header>
-
-
-
 
 <div class="layout">
 
   <!-- Sidebar -->
-<aside class="sidebar">
-  <nav>
-    <a class="parent">Overview
-      <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </a>
-    <div class="submenu">
-      <a href="index.html">Introduction</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="contributors.html">Contributors</a>
-    </div>
-
-    <a class="parent">Runbook
-      <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </a>
-    <div class="submenu">
-      <a href="whitelisting.html">Whitelisting</a>
-      <a href="decommission.html">Cluster Decommission</a>
-      <a href="customkernel.html" class="active">PR Review and Merge</a>
-    </div>
-  </nav>
-</aside>
-
-
-
-<!-- Main -->
-<main class="content" id="mainContent">
-
-  <!-- Loader -->
-  <section class="page-loader" id="pageLoader">
-    <div class="spinner"></div>
-    <p>Loading content…</p>
-  </section>
-
-  <!-- Actual Page Content -->
-  <section class="page-body hidden" id="pageBody">
-    <section class="under-construction">
-      <div class="uc-card">
-        <div class="uc-icon">🚧</div>
-
-        <h1>Page Under Construction</h1>
-
-        <p>
-          This section is currently being worked on.<br>
-          Please check back soon for updates.
-        </p>
+  <aside class="sidebar">
+    <nav>
+      <a class="parent">Overview
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+      <div class="submenu">
+        <a href="index.html">Getting Started</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="contributors.html">Contributors</a>
       </div>
-    </section>
-  </section>
 
+      <a class="parent">Runbook
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+      <div class="submenu">
+        <a href="whitelisting.html">Whitelisting</a>
+        <a href="decommission.html">Decommissioning</a>
+        <a href="customkernel.html" class="active">PR Review and Merge</a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="content">
+  <section class="doc">
+
+    <h1>PR Review & Merge (Custom Kernels)</h1>
+    <p class="doc-intro">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa in aperiam maxime rerum suscipit unde quos rem ad temporibus, est iusto, consequatur perspiciatis quas ipsa doloremque sunt corrupti aliquid vel!
+    </p>
+
+    <!-- Step 1 -->
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-body">
+        <h2>Check that group list is not empty.</h2>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>An empty list means World access, which is probably not the intention for custom kernels. Only kernels provided by Notebooks Team should normally provide World access.</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Check if the <b style="color: orange;">name</b> field of an already registered kernel was not modified.</h2>
+
+        <ol class="step-list">
+          <li>
+            The <b style="color: orange;">name</b> field of an already registered kernel should not be modified as changing it makes the registration flow believe that you want to register a new kernel and creates a new entry for it. This removes the old entry and any kernel spec pointing to it.
+          </li>
+          <li>
+            The <b style="color: orange;">displayName</b>, can be changed at any time without any adverse impact.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>THIS IS FOR EXISTING KERNELS ONLY!</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Only one commit per PR.</h2>
+
+        <ol class="step-list">
+          <li>
+            Action Item
+            <ol>
+              <ol>If seen that there are multiple commits, ask user to squash commit. Refer to <a href="#">README</a> bottom for how to squash commit</ol>
+            </ol>
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>Slack Template for user has more than 1 commit</strong>
+          <p>I noticed that you have <number of commits> commits on this pull request. It’s recommended to have only one commit to avoid any potential issues. Could you please merge your changes into a single commit? You might find this document helpful. Snippet:
+</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Check if the <b style="color: orange;">name</b> field of an already registered kernel was not modified.</h2>
+
+        <ol class="step-list">
+          <li>
+            The <b style="color: orange;">name</b> field of an already registered kernel should not be modified as changing it makes the registration flow believe that you want to register a new kernel and creates a new entry for it. This removes the old entry and any kernel spec pointing to it.
+          </li>
+          <li>
+            The <b style="color: orange;">displayName</b>, can be changed at any time without any adverse impact.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>THIS IS FOR EXISTING KERNELS ONLY!</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Check if the <b style="color: orange;">name</b> field of an already registered kernel was not modified.</h2>
+
+        <ol class="step-list">
+          <li>
+            The <b style="color: orange;">name</b> field of an already registered kernel should not be modified as changing it makes the registration flow believe that you want to register a new kernel and creates a new entry for it. This removes the old entry and any kernel spec pointing to it.
+          </li>
+          <li>
+            The <b style="color: orange;">displayName</b>, can be changed at any time without any adverse impact.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>THIS IS FOR EXISTING KERNELS ONLY!</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Check if the <b style="color: orange;">name</b> field of an already registered kernel was not modified.</h2>
+
+        <ol class="step-list">
+          <li>
+            The <b style="color: orange;">name</b> field of an already registered kernel should not be modified as changing it makes the registration flow believe that you want to register a new kernel and creates a new entry for it. This removes the old entry and any kernel spec pointing to it.
+          </li>
+          <li>
+            The <b style="color: orange;">displayName</b>, can be changed at any time without any adverse impact.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>THIS IS FOR EXISTING KERNELS ONLY!</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Check if the <b style="color: orange;">name</b> field of an already registered kernel was not modified.</h2>
+
+        <ol class="step-list">
+          <li>
+            The <b style="color: orange;">name</b> field of an already registered kernel should not be modified as changing it makes the registration flow believe that you want to register a new kernel and creates a new entry for it. This removes the old entry and any kernel spec pointing to it.
+          </li>
+          <li>
+            The <b style="color: orange;">displayName</b>, can be changed at any time without any adverse impact.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>THIS IS FOR EXISTING KERNELS ONLY!</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h2>Check if the <b style="color: orange;">name</b> field of an already registered kernel was not modified.</h2>
+
+        <ol class="step-list">
+          <li>
+            The <b style="color: orange;">name</b> field of an already registered kernel should not be modified as changing it makes the registration flow believe that you want to register a new kernel and creates a new entry for it. This removes the old entry and any kernel spec pointing to it.
+          </li>
+          <li>
+            The <b style="color: orange;">displayName</b>, can be changed at any time without any adverse impact.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <strong>NOTE</strong>
+          <p>THIS IS FOR EXISTING KERNELS ONLY!</p>
+        </div>
+
+        <!-- Optional image preview -->
+        <div class="image-card">
+          <img src="images/wally.png" alt="Workflow Builder Access form">
+        </div>
+      </div>
+    </div>
+
+  </section>
 </main>
 
 
-  <!-- TOC -->
-  <aside class="toc">
-    <h4>On this page</h4>
-    <a>Whitelisting</a>
+  <!-- References -->
+  <aside class="reference">
+    <h4>References</h4>
+    <a>Docs 1</a>
+    <a>Docs 2</a>
+    <a>Docs 3</a>
+    <a>Docs 4</a>
+    <a>Docs 5</a>
   </aside>
 
 </div>
 
 <script>
-
-  document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("pageLoader");
-  const body = document.getElementById("pageBody");
-
-  // Ensure initial state
-  body.classList.add("hidden");
-
-  setTimeout(() => {
-    loader.style.display = "none";   // instant disappear
-    body.classList.remove("hidden"); // instant show
-  }, 1000);
-});
-
-// Select all parent links
+// Sidebar submenu toggle
 document.querySelectorAll(".sidebar a.parent").forEach(parent => {
-  // Ensure submenu is open on page load
   const submenu = parent.nextElementSibling;
-  if (submenu && submenu.classList.contains("submenu")) {
-    submenu.style.display = "flex"; // open by default
-    parent.classList.add("open");    // chevron down
-  }
+  submenu.style.display = "flex";
+  parent.classList.add("open");
 
-  // Toggle submenu on click
   parent.addEventListener("click", () => {
-    if (submenu.style.display === "none") {
-      submenu.style.display = "flex";   // open
-      parent.classList.add("open");      // rotate chevron
-    } else {
-      submenu.style.display = "none";    // close
-      parent.classList.remove("open");   // reset chevron
-    }
+    const open = submenu.style.display !== "none";
+    submenu.style.display = open ? "none" : "flex";
+    parent.classList.toggle("open", !open);
   });
 });
 
-// Highlight submenu child when clicked
+// Highlight submenu child
 document.querySelectorAll(".sidebar .submenu a").forEach(child => {
   child.addEventListener("click", () => {
-    // Remove active from all
     document.querySelectorAll(".sidebar .submenu a").forEach(a => a.classList.remove("active"));
-    // Add active to clicked
     child.classList.add("active");
-    // Navigation now works normally
   });
 });
 
+// Ensure flowchart SVG adapts on window resize
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".mermaid svg").forEach(svg => {
+    svg.setAttribute("width", "100%");
+  });
+});
 
-// Mermaid initialization (unchanged)
-mermaid.initialize({
-  startOnLoad: true,
-  theme: "dark",
-  flowchart: {
-    htmlLabels: true,
-    curve: "basis",
-    nodeSpacing: 20,
-    rankSpacing: 50
-  },
-  themeVariables: {
-    background: "#0f172a",
-    primaryColor: "#020617",
-    primaryBorderColor: "#334155",
-    primaryTextColor: "#e5e7eb",
-    lineColor: "#64748b",
-    edgeLabelBackground: "#020617",
-    fontFamily: "Inter, system-ui, sans-serif"
+document.addEventListener("keydown", function(event) {
+  if(event.key === "Escape") {
+    // Close all modals
+    document.querySelectorAll(".modal-wrapper:target").forEach(modal => {
+      window.location.hash = ""; // remove target
+    });
   }
 });
+
 </script>
 
 
